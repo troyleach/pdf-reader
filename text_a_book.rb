@@ -7,7 +7,7 @@ class BookModel
   def initialize(filename)
     @file     = PDF::Reader.new(filename)
     @title    = @file.info[:Title]
-    @page3    = @file.page(3).to_s.split(".")
+    @page3    = @file.page(3).to_s.split(/(\.)|(\!)|(\?)/)
   end
 
   # this is where logic will live to pull what ever you want

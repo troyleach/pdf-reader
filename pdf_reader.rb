@@ -1,3 +1,5 @@
+# THIS IS A SANDBOX FILE
+
 require 'pdf-reader'
 
 book = PDF::Reader.new("A Christmas Carol.pdf")
