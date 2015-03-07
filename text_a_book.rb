@@ -14,6 +14,8 @@ class BookModel
   # from the book
   # obviously you will need change @page3! maybe this should be
   # a variable that the user could change?? 
+  # I made this very simple, only split on periods so you will
+  # have to change this
 end
 
 
@@ -30,21 +32,19 @@ class TextABook
     view.book_title(book.title)
     view.welcome
     choice = view.user_input
+
     while book.page3.length > 0
       populate(choice)
       view.display_sentences(@sentences)
-
       if book.page3.length == 0
         view.finished_page
+        exit
       end
-
+      break if choice.downcase == "q"
       view.next_sentences
       choice = view.user_input
-      
-      break if choice.downcase == "q"
-
     end
-    view.finished_page
+
   end
 
   def populate(choice)
@@ -65,7 +65,7 @@ class View
 
   def welcome
     puts "Please enter how many sentences you would like texted to you!"
-    print "type Q to quite "
+    print "or type Q to quite: "
   end
 
   def next_sentences
@@ -91,11 +91,13 @@ class View
   end
 
   def finished_page
+    puts
     puts "Good job you finished this page!"
     puts "good bye!!"
   end
 
 end
 
-#below needs to become a variable that the users inserts
+# below needs to become a variable that the users inserts
+# the name of the book. you will have to format the user input
 TextABook.new("A Christmas Carol.pdf").run
